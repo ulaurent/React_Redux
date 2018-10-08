@@ -1,0 +1,61 @@
+<!-- React beginning --> 
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Basics</title>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+  
+    class App extends React.Component {
+
+      state = {
+          name: "Ben",
+          age: 25
+      }
+
+      handleClick = (e) =>{
+        //Proper way of updating a variable object within a method from another function
+        this.setState({
+          name: "Lavahana"
+        });
+        console.log(e.target);
+        console.log(this.state.name); // This is able to be rendered through the arrow function
+      }
+
+      handleMouseOver = (e) =>{
+        console.log(e.target, e.pageX); //Coordinate of Mouse in the x dir
+      }
+
+      handleCopy = (e) => {
+        console.log("Try being original for once");
+      }
+
+      //Responsable for rendering our template to any member we want to render to
+      // Return our JSX template (a way to write HTML inside a JS block)
+      render(){
+        return( 
+          <div className="app-content">
+            <h1>Hello, ninjas!</h1>
+            <p>My name is: {this.state.name} and I am {this.state.age} years old</p>
+            <button onClick = {this.handleClick}>Click Me</button>
+            <button onMouseOver = {this.handleMouseOver}>Hover Over Me</button>
+            <p onCopy = {this.handleCopy}>What we think we become</p>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'));
+
+  </script>
+</body>
+</html>
+
